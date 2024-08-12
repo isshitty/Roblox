@@ -63,6 +63,8 @@ if game.PlaceId == 15223808363 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/ParkourReborn.lua"))()
 elseif game.PlaceId == 16389398622 or game.PlaceId == 17527914941 or game.PlaceId == 17584310335 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/aDustyDrip.lua"))()
+elseif game.PlaceId == 17129858194 then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/RealmRampage.lua"))()
 elseif not (game.PlaceId == 15223808363 or game.PlaceId == 16389398622 or game.PlaceId == 17527914941 or game.PlaceId == 17584310335) then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/Universal.lua"))()
 end
