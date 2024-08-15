@@ -556,7 +556,11 @@ function RayfieldLibrary:Notify(NotificationSettings)
 		Notification.Icon.ImageTransparency = 1
 
 		Notification.Parent = Notifications
-		Notification.Size = UDim2.new(0, 260, 0, 80)
+		if inputService:GetPlatform() ~= Enum.Platform.Windows and inputService:GetPlatform() ~= Enum.Platform.OSX and inputService:GetPlatform() ~= Enum.Platform.UWP then
+			Notification.Size = UDim2.new(0, 140, 0, 40)
+		else
+			Notification.Size = UDim2.new(0, 260, 0, 80)
+		end
 		Notification.BackgroundTransparency = 1
 
 		TweenService:Create(Notification, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 295, 0, 91)}):Play()
@@ -639,9 +643,7 @@ end
 
 function Hide()
 	Debounce = true
-	if inputService:GetPlatform() ~= Enum.Platform.Windows and inputService:GetPlatform() ~= Enum.Platform.OSX and inputService:GetPlatform() ~= Enum.Platform.UWP then
-            RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping Button below", Duration = 7})
-        else
+	if inputService:GetPlatform() == Enum.Platform.Windows and inputService:GetPlatform() == Enum.Platform.OSX and inputService:GetPlatform() == Enum.Platform.UWP then
             RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping RightShift", Duration = 7})
         end
 	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 470, 0, 400)}):Play()
@@ -2447,50 +2449,45 @@ Topbar.Hide.MouseButton1Click:Connect(function()
 	end
 end)
 
+if inputService:GetPlatform() ~= Enum.Platform.Windows and inputService:GetPlatform() ~= Enum.Platform.OSX and inputService:GetPlatform() ~= Enum.Platform.UWP then
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game:GetService("CoreGui")
+    local ImageButton = Instance.new("ImageButton")
+    ImageButton.Size = UDim2.new(0, 50, 0, 50)
+    ImageButton.Position = UDim2.new(0, 10, 0, 75)
+    ImageButton.AnchorPoint = Vector2.new(0, 0)
+    ImageButton.Parent = ScreenGui
+    ImageButton.Image = "rbxassetid://17146676336"
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 8)
+    UICorner.Parent = ImageButton
+    local UIStroke = Instance.new("UIStroke")
+    UIStroke.Parent = ImageButton
+    UIStroke.Thickness = 1
+    UIStroke.Color = Color3.fromRGB(63, 63, 63)
+    ImageButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34) 
+    ImageButton.Activated:Connect(function()
+        if Debounce then return end
+        if Hidden then
+            Hidden = false
+            Unhide()
+        else
+            Hidden = true
+            Hide()
+        end
+    end)
+end
+
 UserInputService.InputBegan:Connect(function(input, processed)
-    if inputService:GetPlatform() ~= Enum.Platform.Windows and inputService:GetPlatform() ~= Enum.Platform.OSX and inputService:GetPlatform() ~= Enum.Platform.UWP then
-        local ScreenGui = Instance.new("ScreenGui")
-        ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-        local ImageButton = Instance.new("ImageButton")
-        ImageButton.Size = UDim2.new(0, 50, 0, 50)
-        ImageButton.Position = UDim2.new(0.5, 0, 0.8, 75)
-        ImageButton.AnchorPoint = Vector2.new(0.5, 0.5)
-        ImageButton.Parent = ScreenGui
-        ImageButton.Image = "rbxassetid://17146676336"
-        local UICorner = Instance.new("UICorner")
-        UICorner.CornerRadius = UDim.new(0, 8)
-        UICorner.Parent = ImageButton
-        ImageButton.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-        ImageButton.TouchTap:Connect(function(touchPositions, processed)
-            if Debounce then return end
-            if Hidden then
-                Hidden = false
-                Unhide()
-            else
-                Hidden = true
-                Hide()
-            end
-        end)
-        ImageButton.MouseButton1Click:Connect(function()
-            if Debounce then return end
-            if Hidden then
-                Hidden = false
-                Unhide()
-            else
-                Hidden = true
-                Hide()
-            end
-        end)
-    else
-        if (input.KeyCode == Enum.KeyCode.RightShift and not processed) then
-            if Debounce then return end
-            if Hidden then
-                Hidden = false
-                Unhide()
-            else
-                Hidden = true
-                Hide()
-            end
+    if processed then return end
+    if input.KeyCode == Enum.KeyCode.RightShift then
+        if Debounce then return end
+        if Hidden then
+            Hidden = false
+            Unhide()
+        else
+            Hidden = true
+            Hide()
         end
     end
 end)
