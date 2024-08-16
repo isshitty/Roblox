@@ -2479,17 +2479,16 @@ if inputService:GetPlatform() ~= Enum.Platform.Windows and inputService:GetPlatf
 end
 
 UserInputService.InputBegan:Connect(function(input, processed)
-    if processed then return end
-    if input.KeyCode == Enum.KeyCode.RightShift then
-        if Debounce then return end
-        if Hidden then
-            Hidden = false
-            Unhide()
-        else
-            Hidden = true
-            Hide()
-        end
-    end
+	if (input.KeyCode == Enum.KeyCode.RightShift and not processed) then
+		if Debounce then return end
+		if Hidden then
+			Hidden = false
+			Unhide()
+		else
+			Hidden = true
+			Hide()
+		end
+	end
 end)
 
 for _, TopbarButton in ipairs(Topbar:GetChildren()) do
