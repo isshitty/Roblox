@@ -1,7 +1,6 @@
 
 if Genryhna_LOADED then
     local TweenService = game:GetService("TweenService")
-    local UserInputService = game:GetService("UserInputService")
 
     local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
     ScreenGui.Name = "NotificationGui"
@@ -15,7 +14,7 @@ if Genryhna_LOADED then
     local ButtonUICorner = Instance.new("UICorner", DiscordButton)
 
     Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-    Frame.Size = UDim2.new(0, 200, 0, 140)
+    Frame.Size = UDim2.new(0, 180, 0, 120)  -- Reduced size
     Frame.Position = UDim2.new(0.5, 0, 1, -60)
     Frame.AnchorPoint = Vector2.new(0.5, 1)
     Frame.BackgroundTransparency = 1
@@ -28,7 +27,7 @@ if Genryhna_LOADED then
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextScaled = true
     Title.BackgroundTransparency = 1
-    Title.Font = Enum.Font.GothamBold
+    Title.Font = Enum.Font.Gotham
 
     Separator.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
     Separator.Size = UDim2.new(1, 0, 0, 1)
@@ -47,10 +46,10 @@ if Genryhna_LOADED then
     DiscordButton.Text = "Discord"
     DiscordButton.Size = UDim2.new(0.6, 0, 0.2, 0)
     DiscordButton.Position = UDim2.new(0.2, 0, 0.7, 0)
-    DiscordButton.BackgroundColor3 = Color3.fromRGB(114, 137, 218)
+    DiscordButton.BackgroundColor3 = Color3.fromRGB(192, 192, 192) 
     DiscordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     DiscordButton.TextScaled = true
-    DiscordButton.Font = Enum.Font.GothamBold
+    DiscordButton.Font = Enum.Font.Gotham
 
     ButtonUICorner.CornerRadius = UDim.new(0, 8)
 
@@ -80,6 +79,7 @@ if Genryhna_LOADED then
     fadeOutTweens[1].Completed:Connect(function()
         ScreenGui:Destroy()
     end)
+
     return
 end
 
