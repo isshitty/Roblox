@@ -16,6 +16,11 @@ local function setupCharacter(character)
         canFly = true
     end)
 end
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Admin Fly loaded!";
+    Text = "Fly activates on V";
+    Duration = 5;
+})
 localPlayer.CharacterAdded:Connect(function(character)
     setupCharacter(character)
 end)
