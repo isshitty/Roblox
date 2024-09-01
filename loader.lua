@@ -14,7 +14,7 @@ if Genryhna_LOADED then
     local ButtonUICorner = Instance.new("UICorner", DiscordButton)
 
     Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-    Frame.Size = UDim2.new(0, 180, 0, 120)  -- Reduced size
+    Frame.Size = UDim2.new(0, 180, 0, 120) 
     Frame.Position = UDim2.new(0.5, 0, 1, -60)
     Frame.AnchorPoint = Vector2.new(0.5, 1)
     Frame.BackgroundTransparency = 1
