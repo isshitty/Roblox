@@ -89,6 +89,8 @@ elseif game.PlaceId == 17527914941 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/adustytrip-theplains.lua"))()
 elseif game.PlaceId == 16389398622 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/adustytrip-thedesert.lua"))()
+elseif game.PlaceId == 98422814745197 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/refs/heads/main/Scripts/adustytrip-thehallow.lua"))()
 elseif game.PlaceId == 17129858194 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/isshitty/Roblox/main/Scripts/RealmRampage.lua"))()
 elseif not (game.PlaceId == 15223808363 or game.PlaceId == 16389398622 or game.PlaceId == 17527914941 or game.PlaceId == 17584310335) then
